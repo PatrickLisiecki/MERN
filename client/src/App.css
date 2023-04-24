@@ -1,0 +1,55 @@
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.App form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.decks {
+  display: grid;
+  width: 600px;
+  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.decks li {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 130px;
+  background:white;
+  border: 1px solid white;
+  border-radius: 10px;
+  color: black;
+}
+
+.decks li button {
+  position: absolute;
+  font-size: 10px;
+  top: 0;
+  right: 0;
+}
+
+.decks li button:hover {
+  background-color: rgb(255, 88, 88);
+  border-color: black;
+}
