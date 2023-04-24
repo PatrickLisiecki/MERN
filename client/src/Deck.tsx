@@ -53,14 +53,14 @@ export default function Deck() {
         <form onSubmit={handleCreateDeck}>
             <label htmlFor="card-text">Card Text</label>
             <input 
-            id="card-text"
-            value={text}
-            onChange = {(e: React.ChangeEvent<HTMLInputElement>) => {
-                //Save what the user types
-                setText(e.target.value);
-                }}
+              id="card-text"
+              value={text}
+              onChange = {(e: React.ChangeEvent<HTMLInputElement>) => {
+                  //Save what the user types
+                  setText(e.target.value);
+                  }}
             />
-            <button>Create Card</button>
+            <button className="create-btn">Create Card</button>
         </form>
     </div>
   )

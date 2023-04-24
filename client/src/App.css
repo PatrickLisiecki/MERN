@@ -1,5 +1,5 @@
 * {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #root {
@@ -22,6 +22,65 @@
   align-items: center;
 }
 
+.App label {
+  font-size: 1.5rem;
+}
+
+.App #deck-title {
+  background-color: #FFFFFF;
+  border: 1px solid rgb(209,213,219);
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  padding: .75rem 1rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.App .create-btn {
+  background-color: #FFFFFF;
+  border: 1px solid rgb(209,213,219);
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: .75rem 1rem;
+  text-align: center;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.App .create-btn:hover {
+  background-color: rgb(249,250,251);
+}
+
+.App .create-btn:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.App .create-btn:focus-visible {
+  box-shadow: none;
+}
+
+.App #card-text {
+  background-color: #FFFFFF;
+  border: 1px solid rgb(209,213,219);
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  padding: .75rem 1rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
 .decks {
   display: grid;
   width: 600px;
@@ -40,6 +99,11 @@
   border: 1px solid white;
   border-radius: 10px;
   color: black;
+  font-size: 1.5rem;
+}
+
+.decks li:hover {
+  border-color: #646cff;
 }
 
 .decks li button {
@@ -51,5 +115,5 @@
 
 .decks li button:hover {
   background-color: rgb(255, 88, 88);
-  border-color: black;
+  border-color: white;
 }
