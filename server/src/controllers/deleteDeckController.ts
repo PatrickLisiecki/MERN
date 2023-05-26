@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import Deck from "../models/deck";
 
 export async function deleteDeckController(req: Request, res: Response) {
-    //Get deck Id from URL 
+    //Get deck Id from URL
     const deckId = req.params.deckId;
 
     //Delete deck from MongoDB

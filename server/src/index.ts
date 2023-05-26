@@ -25,9 +25,11 @@ app.use(express.json());
 
 //This allows access to a different URL even if the origin does not match
 //Allows the request to happen
-app.use(cors({
-    origin: '*',
-}));
+app.use(
+    cors({
+        origin: "*",
+    })
+);
 
 //Fetching data use GET
 app.get("/decks", getDecksController);
@@ -38,11 +40,10 @@ app.post("/decks", createDeckController);
 //Deleting data using DELETE
 app.delete("/decks/:deckId", deleteDeckController);
 
-app.post("/decks/:deckId/cards", createCardController)
+app.post("/decks/:deckId/cards", createCardController);
 
 //Connect to my MongoDB database
-mongoose.connect(process.env.MONGO_URL ?? "")
-.then(() => {
+mongoose.connect(process.env.MONGO_URL ?? "").then(() => {
     //Use backticks to print PORT var
     console.log(`Listening on port ${PORT}`);
     //Only listen for API requests after MongoDB is connected
