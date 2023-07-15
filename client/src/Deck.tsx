@@ -1,53 +1,48 @@
 import React, { useEffect, useState } from "react";
 import { createCard } from "./api/createCard";
-import { getCards } from "./api/getCards";
+import { getDeck } from "./api/getDeck";
+import { TDeck } from "./api/getDecks";
 import { useParams } from "react-router-dom";
 import "./App.css";
 
 export default function Deck() {
     const [cards, setCards] = useState<string[]>([]);
+    const [deck, setDeck] = useState<TDeck>();
     const [text, setText] = useState("");
     const { deckId } = useParams();
 
-    //const [stateValue, dispatcher] = [1, () => {}];
+    useEffect(() => {
+        async function fetchDeck() {
+            const targetDeck = await getDeck(deckId!);
+            setDeck(targetDeck);
+        }
+        fetchDeck();
+    }, []);
 
     async function handleCreateDeck(e: React.FormEvent) {
-        //Prevent default stops the browser from refreshing
         e.preventDefault();
 
-        const { cards: serverCards } = await createCard(deckId!, text);
-        setCards(serverCards);
+        if (text.length === 0) {
+            return;
+        }
+
+        const returnDeck = await createCard(deckId!, text);
+        setDeck(returnDeck);
 
         setText("");
     }
 
-    useEffect(() => {
-        async function fetchCards() {
-            const userCards = await getCards(deckId!);
-            setCards(userCards);
-        }
-        fetchCards();
-    }, []);
-
-
-    //When the component mounts fetch data from endpoint
-    /*useEffect(() => {
-        async function fetchCards() {
-            const { cards: deckCards } = await getCards(deckId!);
-            setCards(deckCards);
-        }
-        fetchCards();
-    }, []);*/
-
     return (
         <div className="App">
             <ul className="decks">
-                {cards.map((card) => (
-                    <li key={card}>
-                        {/*<button onClick = {() => handleDeckDelete(deck._id)}>X</button>*/}
-                        {card}
-                    </li>
-                ))}
+                {deck &&
+                    deck.cards &&
+                    deck.cards.map((card, i) => (
+                        <li key={i}>
+                            {/*<button onClick = {() => handleDeckDelete(deck._id)}>X</button>*/}
+                            {card}
+                        </li>
+                    ))}
             </ul>
             <form onSubmit={handleCreateDeck}>
                 <label htmlFor="card-text">Card Text</label>
@@ -57,7 +52,7 @@ export default function Deck() {
                     placeholder="Card Text"
                     value={text}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        //Save what the user types
+                        // Save what the user types
                         setText(e.target.value);
                     }}
                 />
