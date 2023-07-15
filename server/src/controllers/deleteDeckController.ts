@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
-//Gives access to the deck model
+// Gives access to the deck model
 import Deck from "../models/deck";
 
 export async function deleteDeckController(req: Request, res: Response) {
-    //Get deck Id from URL
-    const deckId = req.params.deckId;
+    // Get deck Id from URL
+    const deckId = parseInt(req.params.deckId, 10);
 
-    //Delete deck from MongoDB
+    // Delete deck from MongoDB
     const deletedDeck = await Deck.findByIdAndDelete(deckId);
 
-    //Return the deleted deck to the user
+    // Return the deleted deck to the user
     /*res.json({
         body: "Deck deleted successfully!",
     })*/
