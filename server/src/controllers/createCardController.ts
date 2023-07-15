@@ -4,7 +4,7 @@ import Deck from "../models/deck";
 
 export async function createCardController(req: Request, res: Response) {
     // Get the deck Id from the request paramaters
-    const deckId = parseInt(req.params.deckId, 10);
+    const deckId = req.params.deckId;
 
     try {
         // Find the deck in MongoDB by searching the deck Id
@@ -18,7 +18,7 @@ export async function createCardController(req: Request, res: Response) {
 
         await deck.save();
 
-        res.json(deck);
+        res.status(201).json(deck);
     } catch (err: any) {
         return res.status(500).json({
             message: err.message,
