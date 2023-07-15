@@ -8,9 +8,6 @@ app.use(express.json());
 // Import mongoose for connecting to MongoDB
 import mongoose from "mongoose";
 
-// Gives access to the deck model
-import Deck from "./models/deck";
-
 // This allows access to a different URL even if the origin does not match
 // Allows the request to happen
 import cors from "cors";
@@ -21,22 +18,34 @@ app.use(
 );
 
 // Import controllers
-import { getDecksController } from "./controllers/getDeckController";
+import { getDecksController } from "./controllers/getDecksController";
 import { createDeckController } from "./controllers/createDeckController";
 import { deleteDeckController } from "./controllers/deleteDeckController";
 import { createCardController } from "./controllers/createCardController";
+import { getDeckController } from "./controllers/getDeckController";
 
-// Fetching data use GET
+app.use((req, res, next) => {
+    console.log(`Request: ${req.method} ${req.originalUrl}`);
+    res.on("finish", () => {
+        // the 'finish' event will be emitted when the response is handed over to the OS
+        console.log(`Response Status: ${res.statusCode}`);
+    });
+    next();
+});
+
+// Get all decks
 app.get("/decks", getDecksController);
 
-// Pushing data use POST
+// Create a new deck
 app.post("/decks", createDeckController);
 
-// Deleting data using DELETE
+// Delete a deck
 app.delete("/decks/:deckId", deleteDeckController);
 
-// Creating a card using POST
-app.post("/decks/:deckId/cards", createCardController);
+// Create a new card
+app.post("/decks/:deckId", createCardController);
+
+app.get("/decks/:deckId", getDeckController);
 
 // Connect to my MongoDB database
 mongoose.connect(process.env.MONGO_URL ?? "").then(() => {
