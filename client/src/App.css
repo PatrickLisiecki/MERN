@@ -125,3 +125,14 @@ ul {
     right: 5px;
     cursor: pointer;
 }
+
+.error-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    padding: 100px;
+    color: white;
+}
