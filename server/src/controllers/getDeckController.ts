@@ -3,9 +3,11 @@ import { Request, Response } from "express";
 import Deck from "../models/deck";
 
 export async function getDeckController(req: Request, res: Response) {
-    const deckId = req.params.deckId;
-    // Fetch the decks from MongoDB
-    const deck = await Deck.find({ id: deckId });
+    // Get deck Id from URL
+    const { deckId } = req.params;
+
+    // Fetch the deck from DB
+    const deck = await Deck.findById(deckId);
 
     // Send back array to the UI
     res.status(200).json(deck);

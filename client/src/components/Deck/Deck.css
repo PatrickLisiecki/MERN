@@ -182,14 +182,14 @@
     font-size: 48px;
 }
 
-.decks-container {
+.cards-container {
     width: 700px;
     min-height: 300px;
     background-color: white;
     border-radius: 10px;
 }
 
-.decks {
+.cards {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -198,7 +198,7 @@
     list-style-type: none;
 }
 
-.decks li {
+.cards li {
     height: 130px;
     position: relative;
     display: flex;
@@ -213,23 +213,11 @@
     margin-bottom: 5px;
 }
 
-.decks li:hover {
+.cards li:hover {
     background-color: #ddd;
-    cursor: pointer;
 }
 
-.decks li a {
-    color: #016064;
-    text-decoration: none;
-    transition: all 0.5s;
-}
-
-.decks li a:hover {
-    color: #52b2bf;
-    text-decoration: underline;
-}
-
-.decks li button {
+.cards li button {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -238,7 +226,7 @@
     background-color: transparent;
 }
 
-.decks li button:hover {
+.cards li button:hover {
     color: #52b2bf;
 }
 

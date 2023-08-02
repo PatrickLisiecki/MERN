@@ -17,12 +17,15 @@ app.use(
     })
 );
 
-// Import controllers
+// Import controllers for Deck(s)
 import { getDecksController } from "./controllers/getDecksController";
 import { createDeckController } from "./controllers/createDeckController";
 import { deleteDeckController } from "./controllers/deleteDeckController";
-import { createCardController } from "./controllers/createCardController";
 import { getDeckController } from "./controllers/getDeckController";
+
+// Import controllers for Card(s)
+import { createCardController } from "./controllers/createCardController";
+import { deleteCardController } from "./controllers/deleteCardController";
 
 app.use((req, res, next) => {
     console.log(`Request: ${req.method} ${req.originalUrl}`);
@@ -33,19 +36,15 @@ app.use((req, res, next) => {
     next();
 });
 
-// Get all decks
-app.get("/decks", getDecksController);
-
-// Create a new deck
+// Create, read, and delete Deck(s)
 app.post("/decks", createDeckController);
-
-// Delete a deck
+app.get("/decks", getDecksController);
+app.get("/decks/:deckId", getDeckController);
 app.delete("/decks/:deckId", deleteDeckController);
 
-// Create a new card
-app.post("/decks/:deckId", createCardController);
-
-app.get("/decks/:deckId", getDeckController);
+// Create and delete Card(s)
+app.post("/decks/:deckId/cards", createCardController);
+app.delete("/decks/:deckId/cards/:cardIndex", deleteCardController);
 
 // Connect to my MongoDB database
 mongoose.connect(process.env.MONGO_URL ?? "").then(() => {
